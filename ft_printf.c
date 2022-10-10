@@ -3,20 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caesemar <caesemar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 19:02:56 by jocasado          #+#    #+#             */
-/*   Updated: 2022/10/08 20:47:57 by jocasado         ###   ########.fr       */
+/*   Created: 2022/10/10 18:08:32 by caesemar          #+#    #+#             */
+/*   Updated: 2022/10/10 23:18:21 by caesemar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
-#include "libft.h"
+#include "ft_printf.h"
+
+size_t	ft_putchar(char c)
+{
+	write (1, &c, 1);
+	return (1);
+}
+
+size_t	ft_putstr(char *str)
+{
+	size_t	i;
+
+	if (!str)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	i = -1;
+	while (str[++i])
+		write(1, &str[i], 1);
+	return (i);
+}
 
 // • %c Imprime un solo carácter.
 // • %s Imprime una string (como se define por defecto en C).
-// • %p El puntero void * dado como argumento se imprime en formato hexadecimal.
+// • %p El puntero void  dado como argumento se imprime en formato hexadecimal.
 // • %d Imprime un número decimal (base 10).
 // • %i Imprime un entero en base 10.
 // • %u Imprime un número decimal (base 10) sin signo.
@@ -24,36 +43,39 @@
 // • %X Imprime un número hexadecimal (base 16) en mayúsculas.
 // • % % para imprimir el símbolo del porcentaje.
 
-int	flag_type(va_list args, char const *str)
+size_t	flag_type(va_list args, char const str)
 {
-	if (*str == 'c')
-		return (ft_putchar(va_arg(args, char)));
-	else if (*str == 's')
+	size_t	i;
+
+	i = 0;
+	if (str == 'c')
+		return (ft_putchar(va_arg(args, size_t)));
+	else if (str == 's')
 		return (ft_putstr(va_arg(args, char *)));
-	else if (*str == 'p')
-	
-	else if (*str == 'd')
-
-	else if(*str == 'i')
-		return (ft_putnbr(va_arg(args, int)));
-	else if(*str == 'u')
-		return (ft_put_u_nbr(va_arg(args, unsigned int)));
-	else if (*str == 'x')
-
-	else if (*str == 'X')
-		
-	else if (*str == '%')
+	else if (str == 'p')
+		return (ft_p(va_arg(args, unsigned long long), &i, "0123456789abcdef"));
+	else if (str == 'd' || str == 'i')
+		return (ft_putnbr(va_arg(args, size_t), &i));
+	else if (str == 'u')
+		return (ft_put_u_nbr(va_arg(args, int), &i));
+	else if (str == 'x')
+		return (ft_putnbr_hex(va_arg(args, int), &i, "0123456789abcdef"));
+	else if (str == 'X')
+		return (ft_putnbr_hex(va_arg(args, int), &i, "0123456789ABCDEF"));
+	else if (str == '%')
 		return (ft_putchar('%'));
 	return (0);
 }
 
-int ft_printf(char const *str, ...)
+int	ft_printf(char const *str, ...)
 {
-	int		printed_len;
+	size_t	printed_len;
 	va_list	args;
-	int		i;
+	size_t	i;
 
-	va_start(args, i);
+	i = 0;
+	printed_len = 0;
+	va_start(args, str);
 	while (str[i])
 	{
 		if (str[i] == '%')
@@ -62,12 +84,20 @@ int ft_printf(char const *str, ...)
 			i++;
 		}
 		else
-		{
-			ft_putchar(str[i]);
-			printed_len++;
-		}
+			printed_len += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(args);
-	return (printed_len);
+	return ((int) printed_len);
 }
+/*
+int main()
+{
+	int	i,j;
+	i=1;
+	j=i;
+	i = printf("%p %p \n", 0 , 0);
+	j = ft_printf("%p %p \n", 0 , 0);
+	printf("originalr:%d\n",i);
+	printf("mior :%d\n",j);
+}*/
