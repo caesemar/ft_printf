@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caesemar <caesemar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:08:32 by caesemar          #+#    #+#             */
-/*   Updated: 2022/10/10 23:18:21 by caesemar         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:46:20 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ size_t	flag_type(va_list args, char const str)
 	else if (str == 'u')
 		return (ft_put_u_nbr(va_arg(args, int), &i));
 	else if (str == 'x')
-		return (ft_putnbr_hex(va_arg(args, int), &i, "0123456789abcdef"));
+		return (ft_putnbr_hex(va_arg(args, unsigned int), &i, \
+		"0123456789abcdef"));
 	else if (str == 'X')
-		return (ft_putnbr_hex(va_arg(args, int), &i, "0123456789ABCDEF"));
+		return (ft_putnbr_hex(va_arg(args, unsigned int), &i, \
+		"0123456789ABCDEF"));
 	else if (str == '%')
 		return (ft_putchar('%'));
 	return (0);
@@ -90,14 +92,3 @@ int	ft_printf(char const *str, ...)
 	va_end(args);
 	return ((int) printed_len);
 }
-/*
-int main()
-{
-	int	i,j;
-	i=1;
-	j=i;
-	i = printf("%p %p \n", 0 , 0);
-	j = ft_printf("%p %p \n", 0 , 0);
-	printf("originalr:%d\n",i);
-	printf("mior :%d\n",j);
-}*/

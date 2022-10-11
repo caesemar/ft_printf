@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caesemar <caesemar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:21 by caesemar          #+#    #+#             */
-/*   Updated: 2022/10/10 23:29:15 by caesemar         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:45:20 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ size_t	ft_put_u_nbr(int n, size_t *i)
 	return (*i);
 }
 
-size_t	ft_putnbr_hex(int nbr, size_t *i, char *base)
+size_t	ft_putnbr_hex(unsigned int nbr, size_t *i, char *base)
 {
 	unsigned long long	k;
 
@@ -61,14 +61,17 @@ size_t	ft_putnbr_hex(int nbr, size_t *i, char *base)
 	return (*i);
 }
 
+size_t	ft_put_p(unsigned long long nbr, size_t *i, char *base)
+{
+	if (nbr > 15)
+		ft_put_p((nbr / 16), i, base);
+	*i = *i + ft_putchar(base[nbr % 16]);
+	return (*i);
+}
+
 size_t	ft_p(unsigned long long nbr, size_t *i, char *base)
 {
-	if (nbr == 0)
-	{
-		ft_putstr("(nil)");
-		return (5);
-	}	
 	*i = *i + ft_putstr("0x");
-	ft_putnbr_hex(nbr, i, base);
+	ft_put_p(nbr, i, base);
 	return (*i);
 }
