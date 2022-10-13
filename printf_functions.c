@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caesemar <caesemar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:21 by caesemar          #+#    #+#             */
-/*   Updated: 2022/10/11 17:45:20 by jocasado         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:48:50 by caesemar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	ft_putnbr(int n, size_t *i)
 	return (*i);
 }
 
-size_t	ft_put_u_nbr(int n, size_t *i)
+size_t	ft_put_u_nbr(unsigned int n, size_t *i)
 {
 	unsigned long long	k;
 

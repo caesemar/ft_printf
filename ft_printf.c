@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caesemar <caesemar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:08:32 by caesemar          #+#    #+#             */
-/*   Updated: 2022/10/11 17:46:20 by jocasado         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:48:41 by caesemar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ size_t	flag_type(va_list args, char const str)
 	else if (str == 'd' || str == 'i')
 		return (ft_putnbr(va_arg(args, size_t), &i));
 	else if (str == 'u')
-		return (ft_put_u_nbr(va_arg(args, int), &i));
+		return (ft_put_u_nbr(va_arg(args, unsigned int), &i));
 	else if (str == 'x')
 		return (ft_putnbr_hex(va_arg(args, unsigned int), &i, \
 		"0123456789abcdef"));

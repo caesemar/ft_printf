@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caesemar <caesemar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:00:42 by jocasado          #+#    #+#             */
-/*   Updated: 2022/10/11 17:37:34 by jocasado         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:48:45 by caesemar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 size_t	ft_putstr(char *str);
 size_t	ft_putchar(char c);
-size_t	ft_put_u_nbr(int n, size_t *i);
+size_t	ft_put_u_nbr(unsigned int n, size_t *i);
 size_t	ft_putnbr(int n, size_t *i);
 size_t	ft_putnbr_hex(unsigned int nbr, size_t *i, char *base);
 size_t	ft_p(unsigned long long nbr, size_t *i, char *base);
